@@ -38,18 +38,48 @@ memoizedAdd(1, 2);
 // [result is returned: 3]
 ```
 
-### Task
+## Task
 
 Your task is to implement the memoizeOne function such that all the test cases pass.
 
-### How to run tests?
+## How to run tests?
 
 ```
 - npm install
 - npx jest
 ```
 
-### Bonus Question
+## Bonus Question 1
+
+<details>
+  <summary>Click here for more details</summary>
+  
+  ### `this` is treated as an input
+
+  Changes in the input invalidates the cache and calls the function again. `this` is also treated as an input. In other words, if `this` changes the function will be called again.
+  
+  ### Example
+  
+  ```js
+  function add(a, b) {
+    return a + b;
+  }
+
+  const memoizedAdd = memoizeOne(add);
+  
+  memoizedAdd.call({}, 1, 2);
+  // add function: is called with {}
+  // [new value returned: 3]
+  
+  memoizedAdd.call({ a: 1 }, 1, 2);
+  // add function: is called with { a: 1 }
+  // [new value returned: 3]
+  ```
+  
+</details>
+  
+
+## Bonus Question 2
 
 <details>
   <summary>Click here for more details</summary>
