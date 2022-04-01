@@ -60,4 +60,14 @@ describe('memoizeOne', () => {
     expect(ret2).toEqual({ result: 3 });
     expect(ret1).not.toBe(ret2);
   });
+
+  test.skip('this should be treated as an input', () => {
+    const mockFn = jest.fn(add);
+    const memoized = memoizeOne(mockFn);
+
+    memoized.call({}, 1, 2);
+    memoized.call({ a: 1 }, 1, 2);
+
+    expect(mockFn).toHaveBeenCalledTimes(2);
+  });
 });
